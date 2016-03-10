@@ -7,7 +7,7 @@ modelString = "
       logit(P[i]) <- B0 + inprod(B, X[i,]) + s[id[i]]
     }
     # grand mean
-    B0 ~ dt(1, 1/2.5^2, 1) # places most mass over ~.7
+    B0 ~ dt(0, 1/2.5^2, 1)
     # deflections from grand mean (fixed effects)
     for (b in 1:nEff){
       B[b] ~ dt(0, 1/2.5^2, 1) # cauchy(0, 2.5) prior (Gelman et al., 2008)
@@ -17,7 +17,7 @@ modelString = "
       s[ppt] ~ dnorm(0, sTau)
     }
     sTau <- 1/pow(sSD, 2)
-    sSD ~ dgamma(1.01005, 0.1005012) # mode = .1, SD = 10 (v. vauge)
+    sSD ~ dgamma(1.01005, 0.1005012) # mode = .1, SD = 10 (v. vague)
   }
 "
 
